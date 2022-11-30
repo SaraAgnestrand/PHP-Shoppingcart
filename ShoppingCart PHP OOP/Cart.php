@@ -3,6 +3,7 @@
 
 class Cart
 {
+
     private array $items = [];
 
     //TODO Skriv getter för items
@@ -17,32 +18,52 @@ class Cart
      */
     public function addProduct($product)
     {
-
-        
-        /* Sara :exempel fredrik= ["id"] => cartitem,
-                            //["id"] => cartitem,
-                            //["id"] => cartitem,
-        vi gör oss en tjänst om vi gör det som en 
-        associativ array enligt Fredrik. Se tidigare övning.
-        hur lägger vi til nya värden i en sån..36 min i Fredriks förklaring29/11*/
+        $cartItem = new CartItem($product, 1);
+       
+         $this->items[$product->getId()] = $cartItem;
+    
+        //Fredrik sa att det bara skulle vara en rad kod för att skapa ass.array
+         return $cartItem;
     }
+        /*
+        För G är det bara ovan tre rader för VG är det 3-4 rader kod till.
+        vi gör oss en tjänst om vi gör det som en 
+        associativ array enligt Fredrik. */
+   
 
 
     //Skall ta bort en produkt ur kundvagnen (använd unset())
     public function removeProduct($product)
     {
 
+        
+    unset($this->items[$product->getId()]);
+     return $this->product;
     }
+   
 
     //Skall returnera totala antalet produkter i kundvagnen
     //OBS: Ej antalet unika produkter
     public function getTotalQuantity()
     {
+  
+      return count($this->items);
+
     }
 
     //Skall räkna ihop totalsumman för alla produkter i kundvagnen
     //VG: Tänk på att ett cartitem kan ha olika quantity
-    public function getTotalSum()
-    {
-    }
+    
+    //samma logik som i techstoreinlämningen för att räkna ut pris
+    public function getTotalSum(){
+             $sum = 0;
+
+         foreach($this->items as $item => $value) {
+            $sum += $value->getProduct()->getPrice();    
+         }
+        return $sum;
+        
+        }
+
+  
 }
