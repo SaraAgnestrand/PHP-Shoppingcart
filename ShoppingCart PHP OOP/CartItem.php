@@ -19,7 +19,7 @@ public function getProduct()
     return $this->product;
 }
 
-//Behövs ej??!!
+
 public function getQuantity()
 {
     return $this->quantity;
@@ -29,8 +29,8 @@ public function getQuantity()
     //VG: Det skall inte vara möjligt att utöka så att antalet överstiger produktens $inStock.
     public function increaseQuantity()
     {
-        $this->quantity -$this->quantity++;
         
+        $this->quantity++;
     }
 }
 ?>
