@@ -8,6 +8,10 @@ class Cart
 
     //TODO Skriv getter för items
 
+    public function getItems()
+{
+    return $this->items;
+}
     /*
      Skall lägga till en produkt i kundvagnen genom att
      skapa ett nytt cartItem och lägga till i $items array.
@@ -47,8 +51,8 @@ class Cart
     public function getTotalQuantity()
     {
         $count= 0;
-        foreach($this->items as $item => $value){
-            $count += $value->getQuantity();
+        foreach($this->items as  $cartItem){
+            $count += $cartItem->getQuantity();
         }
         
         return $count;
@@ -57,12 +61,12 @@ class Cart
     //Skall räkna ihop totalsumman för alla produkter i kundvagnen
     //VG: Tänk på att ett cartitem kan ha olika quantity
     
-    //samma logik som i techstoreinlämningen för att räkna ut pris
+    //Samma logik som i techstoreinlämningen för att räkna ut pris
     public function getTotalSum(){
              $sum = 0;
-
-         foreach($this->items as $item => $value) {
-            $sum += $value->getProduct()->getPrice()*$value->getQuantity();    
+//$key kan också skrivas $item och cartItem som $value
+         foreach($this->items as $cartItem) {
+            $sum += $cartItem->getProduct()->getPrice()*$cartItem->getQuantity();    
          }
         return $sum;
         
