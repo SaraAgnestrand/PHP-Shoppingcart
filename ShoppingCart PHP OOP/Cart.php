@@ -3,7 +3,6 @@
 
 class Cart
 {
-
     private array $items = [];
 
     //TODO Skriv getter för items
@@ -24,9 +23,13 @@ class Cart
     {
         $cartItem = new CartItem($product, 1);
        
-         $this->items[$product->getId()] = $cartItem;
-    
-        //Fredrik sa att det bara skulle vara en rad kod för att skapa ass.array
+
+        if(isset($this->items[$product->getId()])){
+            $this->items[$product->getId()]->increaseQuantity();
+             $cartItem->getQuantity();
+        }else{
+            $this->items[$product->getId()] = $cartItem;
+        }
          return $cartItem;
     }
         /*
@@ -34,18 +37,14 @@ class Cart
         vi gör oss en tjänst om vi gör det som en 
         associativ array enligt Fredrik. */
    
-
-
     //Skall ta bort en produkt ur kundvagnen (använd unset())
     public function removeProduct($product)
     {
-
-        
+   
     unset($this->items[$product->getId()]);
      return $this->product;
     }
    
-
     //Skall returnera totala antalet produkter i kundvagnen
     //OBS: Ej antalet unika produkter
     public function getTotalQuantity()
